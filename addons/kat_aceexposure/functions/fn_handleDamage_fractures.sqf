@@ -57,9 +57,11 @@ private _select = _selection select [0, 3];
 switch (true) do {
     case (_select isEqualto "leg"): {
         _unit forceWalk true;
+		_unit setHitPointDamage ["hitLegs", 0.35];
     };
 	case (_select isEqualTo "han"): {
 	    [_unit, "kat_fracture", 200, true] call ace_common_fnc_setAimCoef;
+		_unit setHitPointDamage ["hitHands", 0.35];
 	};
 };
 [_unit, _pain] call ace_medical_fnc_adjustPainLevel;

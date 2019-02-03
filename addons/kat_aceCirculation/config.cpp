@@ -53,7 +53,6 @@ class CfgFunctions {
             class compatible{};
             class events{};
             class groupID{};
-            class handleHR{};
             class handleInit{};
             class handleTreatment{};
             class init{};
@@ -111,6 +110,11 @@ class CfgSounds {
     class KAT_NoShock {
         name = "KAT_NoShock";
         sound[] = {"kat_aceCirculation\sounds\noshock.wav", db + 2, 1, 15};
+        titles[]	= {};
+    };
+    class KAT_TakePainKiller {
+        name = "KAT_TakePainKiller";
+        sound[] = {"kat_aceCirculation\sounds\take_painkillers.wav", db + 2, 1, 15};
         titles[]	= {};
     };
 };

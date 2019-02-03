@@ -111,9 +111,9 @@ class ACE_Medical_Advanced {
         class fractures {
             class Femur {
                 name = "Femur";
-                selections[] = {"Head", "Torso"};
+                selections[] = {"leg_l", "leg_r", "legs"};
                 pain = 0.2;
-                causes[] = {"Bullet", "VehicleCrash", "Backblast", "Explosive", "Shell", "Grenade"};
+                causes[] = {"VehicleCrash", "Backblast", "Explosive", "Shell", "Grenade"};
                 minDamage = 0.5;
             };
         };

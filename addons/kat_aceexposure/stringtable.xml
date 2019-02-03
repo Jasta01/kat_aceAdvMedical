@@ -11,5 +11,9 @@
 			<English>Fractures activated?</English>
 			<German>Frakturen aktivieren?</German>
 		</Key>
+		<Key ID="STR_kat_aceExposure_SETTING_FRACTURES_PROBABILITY">
+			<English>Probability of fractures<br/>in percent</English>
+			<German>Wahrscheinlichkeit für Frakturn<br/>in Prozent</German>
+		</Key>
 	</Package>
 </Project>

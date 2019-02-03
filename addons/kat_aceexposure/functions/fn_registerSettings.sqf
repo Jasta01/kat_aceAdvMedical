@@ -35,4 +35,13 @@
 	true
 ] call CBA_Settings_fnc_init;
 
+[
+	"kat_aceExposure_fractures_probability",
+	"SLIDER",
+	localize "STR_kat_aceExposure_SETTING_FRACTURES_PROBABILITY",
+	CBA_SETTINGS_CAT,
+	[0, 100, 20, 0],
+	true
+] call CBA_Settings_fnc_init;
+
 nil;

@@ -16,4 +16,4 @@
 
 params ["_unit"];
 
-_unit setVariable ["kat_aceExposure_X", "X", true];
+_unit setVariable ["kat_aceExposure_fractures", [], true];

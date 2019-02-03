@@ -14,4 +14,4 @@
  * Public: No
  */
 
-["", {_this call kat_aceExposure_fnc_}] call CBA_fnc_addEventHandler;
+ ["treatmentSAM", {_this call kat_aceExposure_fnc_treatment_SAMLocal}] call CBA_fnc_addEventHandler;

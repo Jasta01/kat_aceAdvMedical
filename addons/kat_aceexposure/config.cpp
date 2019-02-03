@@ -29,9 +29,12 @@ class CfgFunctions {
         file = "kat_aceExposure\functions";
         class functions {
             class events{};
+            class handleDamage_fractures{};
             class handleInit{};
             class init{};
             class registerSettings{};
+            class SAM{};
+            class SAMLocal{};
         };
     };
 };
@@ -72,34 +75,47 @@ statement = "[_player, _target, 'hand_l', 'Painkillers'] call ace_medical_fnc_tr
 };
 
 class ACE_Medical_Actions {
-class Advanced {
-class FieldDressing;
-class Morphine;
-class Painkillers: Morphine {
-displayName = "$STR_kat_aceAirway_Larynx_Display";
-displayNameProgress = $STR_kat_aceAirway_action_placing;
-category = "airway";
-treatmentLocations[] = {"All"};
-allowedSelections[] = {"head"};
-allowSelfTreatment = 0;
-requiredMedic = 1;
-treatmentTime = 5;
-items[] = {"KAT_larynx"};
-condition = "!([_target] call ace_common_fnc_isAwake) && (missionNamespace getVariable ['kat_aceAirway_enable',true])";
-patientStateCondition = 0;
-callbackSuccess = "[_player, _target, 'Larynxtubus'] call kat_aceAirway_fnc_treatmentAdvanced_airway";
-callbackFailure = "";
-callbackProgress = "";
-itemConsumed = 1;
-animationPatient = "";
-animationPatientUnconscious = "AinjPpneMstpSnonWrflDnon_rolltoback";
-animationPatientUnconsciousExcludeOn[] = {"ainjppnemstpsnonwrfldnon"};
-animationCaller = "AinvPknlMstpSlayWrflDnon_medicOther";
-animationCallerProne = "AinvPpneMstpSlayW[wpn]Dnon_medicOther";
-animationCallerSelf = "AinvPknlMstpSlayW[wpn]Dnon_medic";
-animationCallerSelfProne = "AinvPpneMstpSlayW[wpn]Dnon_medic";
-litter[] = {};
-};
-};
-};
+    class Advanced {
+        class FieldDressing;
+        class Morphine;
+        class Painkillers: Morphine {
+            displayName = "$STR_kat_aceAirway_Larynx_Display";
+            displayNameProgress = $STR_kat_aceAirway_action_placing;
+            category = "airway";
+            treatmentLocations[] = {"All"};
+            allowedSelections[] = {"head"};
+            allowSelfTreatment = 0;
+            requiredMedic = 1;
+            treatmentTime = 5;
+            items[] = {"KAT_larynx"};
+            condition = "!([_target] call ace_common_fnc_isAwake) && (missionNamespace getVariable ['kat_aceAirway_enable',true])";
+            patientStateCondition = 0;
+            callbackSuccess = "[_player, _target, 'Larynxtubus'] call kat_aceAirway_fnc_treatmentAdvanced_airway";
+            callbackFailure = "";
+            callbackProgress = "";
+            itemConsumed = 1;
+            animationPatient = "";
+            animationPatientUnconscious = "AinjPpneMstpSnonWrflDnon_rolltoback";
+            animationPatientUnconsciousExcludeOn[] = {"ainjppnemstpsnonwrfldnon"};
+            animationCaller = "AinvPknlMstpSlayWrflDnon_medicOther";
+            animationCallerProne = "AinvPpneMstpSlayW[wpn]Dnon_medicOther";
+            animationCallerSelf = "AinvPknlMstpSlayW[wpn]Dnon_medic";
+            animationCallerSelfProne = "AinvPpneMstpSlayW[wpn]Dnon_medic";
+            litter[] = {};
+        };
+        };
+    };
 */
+class ACE_Medical_Advanced {
+    class Injuries {
+        class fractures {
+            class Femur {
+                name = "Femur";
+                selections[] = {"Head", "Torso"};
+                pain = 0.2;
+                causes[] = {"Bullet", "VehicleCrash", "Backblast", "Explosive", "Shell", "Grenade"};
+                minDamage = 0.5;
+            };
+        };
+    };
+};

@@ -26,4 +26,13 @@
 	true
 ] call CBA_Settings_fnc_init;
 
+[
+	"kat_aceExposure_fractures_enable",
+	"CHECKBOX",
+	localize "STR_kat_aceExposure_SETTING_FRACTURES_ENABLE",
+	CBA_SETTINGS_CAT,
+	[true],
+	true
+] call CBA_Settings_fnc_init;
+
 nil;

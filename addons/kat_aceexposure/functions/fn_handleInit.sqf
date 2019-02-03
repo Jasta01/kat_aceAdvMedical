@@ -16,4 +16,6 @@
 
 params ["_unit"];
 
+_unit addEventHandler ["HandleDamage", {_this call kat_aceExposure_fnc_handleDamage_fractures;}];
+
 _unit call kat_aceExposure_fnc_init;

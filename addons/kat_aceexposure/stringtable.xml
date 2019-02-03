@@ -7,5 +7,9 @@
 			<Polish>ACE-Otoczenie aktywowane?</Polish>
 			<Spanish>¿Activar ACE-Exposición?</Spanish>
 		</Key>
+		<Key ID="STR_kat_aceExposure_SETTING_FRACTURES_ENABLE">
+			<English>Fractures activated?</English>
+			<German>Frakturen aktivieren?</German>
+		</Key>
 	</Package>
 </Project>

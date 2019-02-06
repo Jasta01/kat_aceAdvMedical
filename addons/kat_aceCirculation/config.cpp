@@ -28,8 +28,8 @@ class CfgPatches {
             "adv_aceCPR",
             "cba_settings"
         };
-        version = "0.7";
-        versionStr = "0.7";
+        version = "0.9";
+        versionStr = "0.9";
         author = "[SeL] Katalam";
         authorUrl = "http://spezialeinheit-luchs.de/";
     };
@@ -49,6 +49,7 @@ class CfgFunctions {
     class kat_aceCirculation {
         file = "kat_aceCirculation\functions";
         class functions {
+            class AED_sound{};
             class bloodType{};
             class compatible{};
             class events{};
@@ -183,18 +184,6 @@ class cfgWeapons {
             mass = 40;
         };
     };
-    class KAT_coolBattery: ACE_ItemCore {
-        scope = 2;
-        author = "Katalam";
-        displayName = "$STR_KAT_aceCirculation_coolBattery";
-        picture = "\kat_acecirculation\images\coolBattery.paa";
-        model = "\A3\Structures_F_EPA\Items\Medical\WaterPurificationTablets_F.p3d";
-        descriptionShort = $STR_KAT_aceCirculation_coolBattery_desc;
-        descriptionUse = $STR_KAT_aceCirculation_coolBattery_desc;
-        class ItemInfo: CBA_MiscItem_ItemInfo {
-            mass = 2;
-        };
-    };
 };
 
 class cfgMagazines {
@@ -260,7 +249,6 @@ class cfgVehicles {
     class KAT_medicalSupplyCrate: ACE_medicalSupplyCrate {
         displayName = $STR_KAT_aceCirculation_bloodbank;
         class TransportItems: TransportItems {
-            MACRO_ADDITEM(KAT_coolBattery,5);
             MACRO_ADDITEM(KAT_bloodIV_O,5);
             MACRO_ADDITEM(KAT_bloodIV_A,10);
             MACRO_ADDITEM(KAT_bloodIV_B,10);
@@ -435,6 +423,8 @@ class ACE_Medical_Actions {
 
         class Defibrillator: CPR {
             items[] = {{"adv_aceCPR_AED", "KAT_X_AED"}};
+            treatmentTime = 10;
+            callbackProgress = "call kat_acecirculation_fnc_AED_sound";
         };
         class X_Defibrillator: CPR {
             displayName = $STR_KAT_aceCirculation_X_Action_Use;
@@ -524,7 +514,7 @@ class ACE_Medical_Advanced {
             };
             class Painkillers {
                 // copied from ACE. Just a reminder
-                painReduce = 0.7;
+                painReduce = 1.2; // increased from 0.7
                 timeInSystem = 120;
                 maxDose = 10;
                 inCompatableMedication[] = {};

@@ -14,9 +14,9 @@ class CfgPatches {
             "kat_aceCirculation",
             "cba_settings"
         };
-        version = "0.9";
-        versionStr = "0.9";
-        author = "[SeL] Katalam";
+        version = "0.9.1";
+        versionStr = "0.9.1";
+        author = "Katalam";
         authorUrl = "http://spezialeinheit-luchs.de/";
     };
 };

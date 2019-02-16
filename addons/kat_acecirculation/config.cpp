@@ -2,11 +2,12 @@
 class CfgPatches {
     class kat_aceCirculation {
         units[] = {
-            "KAT_PainkillersItem",
-            "KAT_X_AEDItem"
+            "KAT_PainkillerItem",
+            "KAT_X_AEDItem",
+            "KAT_medicalSupplyCrate"
         };
         weapons[] = {
-            "KAT_Painkillers",
+            "KAT_Painkiller",
             "KAT_bloodIV_O",
             "KAT_bloodIV_A",
             "KAT_bloodIV_B",
@@ -19,7 +20,9 @@ class CfgPatches {
             "KAT_bloodIV_A_250",
             "KAT_bloodIV_B_250",
             "KAT_bloodIV_AB_250",
-            "KAT_X_AED"
+            "KAT_Painkiller_Item",
+            "KAT_X_AED",
+            "KAT_CrossPanel"
         };
         requiredVersion = 1.80;
         requiredAddons[] = {
@@ -28,9 +31,9 @@ class CfgPatches {
             "adv_aceCPR",
             "cba_settings"
         };
-        version = "0.9";
-        versionStr = "0.9";
-        author = "[SeL] Katalam";
+        version = "0.9.6";
+        versionStr = "0.9.6";
+        author = "Katalam";
         authorUrl = "http://spezialeinheit-luchs.de/";
     };
 };
@@ -164,7 +167,7 @@ class cfgWeapons {
     class KAT_bloodIV_AB_250: ACE_bloodIV_250 {
         displayName = "$STR_KAT_aceCirculation_BloodIV_AB_250";
     };
-    class KAT_Painkillers: ACE_ItemCore {
+    class KAT_Painkiller_Item: ACE_ItemCore {
         scope = 1; // no mistake, just a placeholder, cause ACE can't handle magazines. DO NOT USE!
         author = "Katalam";
         displayName = "$STR_KAT_aceCirculation_Painkillers_Box_Display";
@@ -184,12 +187,24 @@ class cfgWeapons {
             mass = 40;
         };
     };
+    class KAT_CrossPanel: ACE_ItemCore {
+        scope = 2;
+        author = "Katalam";
+        displayName = "$STR_KAT_aceCirculation_crosspanel";
+        descriptionShort = "$STR_KAT_aceCirculation_desc_crosspanel";
+        picture = "\kat_acecirculation\images\crosspanel.paa";
+        icon = "";
+        mapSize = 0.034;
+        class ItemInfo: CBA_MiscItem_ItemInfo {
+            mass = 0.1;
+        };
+    };
 };
 
 class cfgMagazines {
     class CA_Magazine;
 
-    class KAT_Painkillers: CA_Magazine {
+    class KAT_Painkiller: CA_Magazine {
         author = "Katalam";
         scope = 2;
 
@@ -216,21 +231,21 @@ class cfgVehicles {
         class TransportMagazines;
     };
 
-    class KAT_PainkillersItem: WeaponHolder_Single_limited_item_F {
+    class KAT_PainkillerItem: WeaponHolder_Single_limited_item_F {
         scope = 2;
         scopeCurator = 2;
         displayName= "$STR_KAT_aceCirculation_Painkillers_Box_Display";
         author = "Katalam";
         vehicleClass = "Magazines";
         class TransportItems {
-            MACRO_ADDITEM(KAT_Painkillers,1);
+            MACRO_ADDITEM(KAT_Painkiller,1);
         };
     };
     class KAT_X_AEDItem: adv_aceCPR_AEDItem {
         scope = 2;
         scopeCurator = 2;
         displayName = "$STR_KAT_aceCirculation_X_Display";
-        author = "[SeL] Katalam";
+        author = "Katalam";
         class TransportItems {
             MACRO_ADDITEM(KAT_X_AED,1);
         };
@@ -243,12 +258,13 @@ class cfgVehicles {
             MACRO_ADDITEM(KAT_X_AED,1);
         };
         class TransportMagazines: TransportMagazines {
-            MACRO_ADDMAGAZINE(KAT_Painkillers,10);
+            MACRO_ADDMAGAZINE(KAT_Painkiller,10);
         };
     };
     class KAT_medicalSupplyCrate: ACE_medicalSupplyCrate {
         displayName = $STR_KAT_aceCirculation_bloodbank;
         class TransportItems: TransportItems {
+            MACRO_ADDITEM(KAT_CrossPanel,5);
             MACRO_ADDITEM(KAT_bloodIV_O,5);
             MACRO_ADDITEM(KAT_bloodIV_A,10);
             MACRO_ADDITEM(KAT_bloodIV_B,10);
@@ -274,7 +290,7 @@ class Man;
                 class CheckBloodPressure {}; // Remove the ability to check blood pressure at the head
                 class Painkillers {
                     displayName = "$STR_KAT_aceCirculation_Inject_Box_Painkillers";
-                    condition = "('KAT_Painkillers' in (magazines _player) || 'KAT_Painkillers' in (magazines _target))";
+                    condition = "('KAT_Painkiller' in (magazines _player) || 'KAT_Painkiller' in (magazines _target))";
                     statement = "[_player, _target, 'head', 'Painkillers'] call ace_medical_fnc_treatment";
                     showDisabled = 0;
                     exceptions[] = {"isNotSitting"};
@@ -316,7 +332,7 @@ class Man;
                         class CheckBloodPressure {}; // Remove the ability to check blood pressure at the head
                         class Painkillers {
                             displayName = "$STR_KAT_aceCirculation_Inject_Box_Painkillers";
-                            condition = "('KAT_Painkillers' in (magazines _player) || 'KAT_Painkillers' in (magazines _target))";
+                            condition = "('KAT_Painkiller' in (magazines _player) || 'KAT_Painkiller' in (magazines _target))";
                             statement = "[_player, _target, 'head', 'Painkillers'] call ace_medical_fnc_treatment";
                             showDisabled = 0;
                             exceptions[] = {"isNotSitting"};
@@ -361,7 +377,7 @@ class Man;
                     class CheckBloodPressure {};
                     class Painkillers {
                         displayName = "$STR_KAT_aceCirculation_Inject_Box_Painkillers";
-                        condition = "'KAT_Painkillers' in (magazines _player)";
+                        condition = "'KAT_Painkiller' in (magazines _player)";
                         statement = "[_player, _target, 'head', 'Painkillers'] call ace_medical_fnc_treatment";
                         showDisabled = 0;
                         exceptions[] = {"isNotInside", "isNotSitting"};
@@ -386,6 +402,14 @@ class Man;
                     exceptions[] = {"isNotInside", "isNotSitting"};
                     icon = "";
                 };
+                class openCrossPanel {
+                    displayName = "$STR_KAT_aceCirculation_open_crosspanel";
+                    condition = "('KAT_CrossPanel' in (uniformItems _player)) || ('KAT_CrossPanel' in (vestItems _player))";
+                    statement = "createDialog 'KAT_CrossPanel_Dialog'";
+                    showDisabled = 0;
+                    exceptions[] = {"isNotInside", "isNotSitting"};
+                    icon = "";
+                };
             };
         };
     };
@@ -403,8 +427,8 @@ class ACE_Medical_Actions {
             displayNameProgress = $STR_KAT_aceCirculation_Using;
             allowedSelections[] = {"head"};
             items[] = {};
-            callbackSuccess = "['KAT_Painkillers', _player, _target, _selectionName, 'Painkillers'] call kat_aceCirculation_fnc_removeItemfromMag";
-            condition = "('KAT_Painkillers' in (magazines _player) || 'KAT_Painkillers' in (magazines _target))";
+            callbackSuccess = "['KAT_Painkiller', _player, _target, _selectionName, 'Painkillers'] call kat_aceCirculation_fnc_removeItemfromMag";
+            condition = "('KAT_Painkiller' in (magazines _player) || 'KAT_Painkiller' in (magazines _target))";
         };
         class CheckDogtags: checkPulse {
             displayName = $STR_KAT_aceCirculation_DogTag;
@@ -522,7 +546,35 @@ class ACE_Medical_Advanced {
                 // The viscosity of a fluid is a measure of its resistance to gradual deformation by shear stress or tensile stress. For liquids, it corresponds to the informal concept of "thickness".
                 // This value will increase/decrease the viscoty of the blood with the percentage given. Where 100 = max. Using the minus will decrease viscosity
                 viscosityChange = 5;
+                // item class name
+                itemClassName = "KAT_Painkiller_Item";
             };
+        };
+    };
+};
+
+class KAT_CrossPanel_Dialog {
+    idd = -1;
+    movingEnable = 1;
+    onLoad = "uiNamespace setVariable ['CrossPanel_Display', (_this select 0)]";
+    onUnload = "_this call kat_aceCirculation_fnc_onCloseDialog";
+    objects[] = {};
+
+    class controls {
+        class BACKGROUND {
+            moving=1;
+            type=0;
+            font="TahomaB";
+            SizeEX=0.025;
+            idc=-1;
+            style=48;
+            x="safezoneX";
+            y="safezoneY+0.181889";
+            w="1.62727*3/4";
+            h="1.62727";
+            colorBackground[]={1,1,1,1};
+            colorText[]={1,1,1,1};
+            text = "\kat_acecirculation\images\crosspanel.paa";
         };
     };
 };

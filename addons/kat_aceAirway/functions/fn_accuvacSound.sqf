@@ -17,16 +17,22 @@
 
 (_this select 0) params ["_caller", "_target"];
 
-if !(_caller getVariable ["kat_aceAirway_sound",false]) then {
-	_caller setVariable ["kat_aceAirway_sound",true];
+if !(_caller getVariable ["kat_aceAirway_sound", false]) then {
+	_caller setVariable ["kat_aceAirway_sound", true, true];
 	(_this select 0) spawn {
 		params ["_caller", "_target"];
+<<<<<<< HEAD
 		sleep 2;
 		playsound3D ["kat_aceAirway\sounds\Suction.wav", _target, false, getPosASL _target, 8, 1, 15];
 		sleep 2;
 		playsound3D ["kat_aceAirway\sounds\Suction.wav", _target, false, getPosASL _target, 8, 1, 15];
 		sleep 2;
 		_caller setVariable ["kat_aceAirway_sound",false];
+=======
+		playsound3D ["kat_aceAirway\sounds\Suction.wav", _target, false, getPosASL _target, 6, 1, 15];
+		sleep 7;
+		_caller setVariable ["kat_aceAirway_sound", false, true];
+>>>>>>> master
 	};
 };
 

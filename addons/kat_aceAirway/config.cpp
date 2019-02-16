@@ -4,7 +4,8 @@ class CfgPatches {
         units[] = {
             "KAT_guedelItem",
             "KAT_larynxItem",
-            "KAT_accuvacItem"
+            "KAT_accuvacItem",
+            "KAT_Vomit"
         };
         weapons[] = {
             "KAT_guedel",
@@ -18,7 +19,7 @@ class CfgPatches {
         };
         version = "0.9.4";
         versionStr = "0.9.4";
-        author = "[SeL] Katalam";
+        author = "Katalam";
         authorUrl = "http://spezialeinheit-luchs.de/";
     };
 };
@@ -386,7 +387,7 @@ class ACE_Medical_Actions {
         };
         class Accuvac: larynxtubus {
             displayName = "Accuvac";
-            treatmentTime = 12;
+            treatmentTime = 8;
             items[] = {"KAT_accuvac"};
             itemConsumed = 0;
             callbackSuccess = "[_player, _target] call kat_aceAirway_fnc_treatmentAdvanced_accuvac";
